@@ -1,0 +1,12 @@
+final String ASSASSIN = 'assassin';
+final String AVENGER = 'avenger';
+final String ARCHER = 'archer';
+final String CASTER = 'caster';
+final String BERSERKER = 'berserker';
+final String FOREIGNER = 'foreigner';
+final String LANCER = 'lancer';
+final String MOONCANCER = 'mooncancer';
+final String RIDER = 'rider';
+final String RULER = 'ruler';
+final String SABER = 'saber';
+final String SHIELDER = 'shielder';

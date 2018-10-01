@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "927533763355",
+    "firebase_url": "https://fgodatabase.firebaseio.com",
+    "project_id": "fgodatabase",
+    "storage_bucket": "fgodatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927533763355:android:9eb0d92c7ca726ac",
+        "android_client_info": {
+          "package_name": "com.henriquekano.fgodatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927533763355-kqeu7ju9jgul5fo30r11iltp496g7fgn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmEviUEtbPfF5OpFLfCHWUutc2OIwuqzc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

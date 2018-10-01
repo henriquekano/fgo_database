@@ -1,0 +1,46 @@
+areas
+  - id
+  - Name
+  - Banner image url
+  - map image url
+  - Bond level bonus servants (foreign keys?)
+  - point/fights (foreign keys?) * may be story only
+  - rewards for clearing
+  - requirements (foreign key for other areas?)
+  - period (for events)
+  - shop (for events)
+  - Sum of fights rewards (optional - nice to have)
+
+fights/points
+  - ap cost
+  - map point image url
+  - available npcs (foreign key to servants?)
+  - PSs
+  - drops (foreign key for items?)
+  - Battles (list of enemies): lvl, class and hp - (foreign key for enemies?)
+  - completion rewards - may be servant skill/np upgrade if interlude
+  - Exp rate (optional) - bond and xp
+
+items
+  - id
+  - Name
+  - image url
+  - drop map (foreign key?)
+  - drop enemy (foreign key to enemies)
+  - description
+  - type
+  - CE bonus (FK?)
+
+enemy
+  - Name
+  - traits
+  - drops (FK to items?)
+  - image url
+  - fights/points it appears (FK)
+  - maps (FK to fights/points)
+
+skill_enhancements
+  - servant (FK)
+  - item (FK)
+  - servant skill level (2 ~ 10)
+  - quantity
