@@ -4,7 +4,7 @@ import 'dart:convert'
 import 'package:http/http.dart'
   show get, Response;
 
-final ENDPOINT = 'https://fgo-database-api.herokuapp.com';
+const ENDPOINT = 'https://fgo-database-api.herokuapp.com';
 
 List<Map<String, dynamic>> _pickDocs(Response response) {
   final parsedResponse = Map<String, dynamic>.from(json.decode(response.body));

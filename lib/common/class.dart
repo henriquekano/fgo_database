@@ -1,0 +1,12 @@
+const String ASSASSIN = 'assassin';
+const String AVENGER = 'avenger';
+const String ARCHER = 'archer';
+const String CASTER = 'caster';
+const String BERSERKER = 'berserker';
+const String FOREIGNER = 'foreigner';
+const String LANCER = 'lancer';
+const String MOONCANCER = 'mooncancer';
+const String RIDER = 'rider';
+const String RULER = 'ruler';
+const String SABER = 'saber';
+const String SHIELDER = 'shielder';

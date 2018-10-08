@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:dio/dio.dart';
@@ -6,8 +5,7 @@ import 'package:html/parser.dart'
   show parse;
 import 'package:html/dom.dart'
   show Document;
-import 'empty.dart';
-import 'main.dart' show tabBar;
+import 'package:fgo_database/common/abstractions.dart';
 
 final jpEmoji = '🇯🇵';
 final usEmoji = '🇺🇸';

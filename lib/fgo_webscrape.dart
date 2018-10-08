@@ -1,11 +1,9 @@
 import 'package:html/parser.dart' show parse;
 import 'package:html/dom.dart' show Document, Element;
 import 'package:dio/dio.dart' show Dio;
-import 'package:html/parser.dart' show parse;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'dart:async';
-import 'dart:io';
 
 String _removeMultipleBlanks(String string) {
   return string
@@ -16,8 +14,9 @@ String _removeMultipleBlanks(String string) {
 }
 
 class GamepressServantParser {
+  static const GAMEPRESS_HOSTNAME = 'https://grandorder.gamepress.gg';
+
   Document _htmlDocument;
-  final GAMEPRESS_HOSTNAME = 'https://grandorder.gamepress.gg';
 
   GamepressServantParser(String html)
     : this._htmlDocument = parse(html);

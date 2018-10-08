@@ -1,72 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fgo_database/filter_servant.dart';
 import 'details.dart';
-import 'package:fgo_database/empty.dart';
+import 'package:fgo_database/common/abstractions.dart';
 import 'package:fgo_database/loading_cached_image.dart';
 import 'package:fgo_database/fgo_database_service.dart'
   show fetchServants;
-
-final assassinClass = Image.asset(
-  'assets/assassin.png',
-  width: 40.0,
-  height: 40.0,
-);
-final archerClass = Image.asset(
-  'assets/archer.png',
-  width: 40.0,
-  height: 40.0,
-);
-final avengerClass = Image.asset(
-  'assets/avenger.png',
-  width: 40.0,
-  height: 40.0,
-);
-final berserkerClass = Image.asset(
-  'assets/berserker.png',
-  width: 40.0,
-  height: 40.0,
-);
-final casterClass = Image.asset(
-  'assets/caster.png',
-  width: 40.0,
-  height: 40.0,
-);
-final foreignerClass = Image.asset(
-  'assets/foreigner.png',
-  width: 40.0,
-  height: 40.0,
-);
-final lancerClass = Image.asset(
-  'assets/lancer.png',
-  width: 40.0,
-  height: 40.0,
-);
-final mooncancerClass = Image.asset(
-  'assets/mooncancer.png',
-  width: 40.0,
-  height: 40.0,
-);
-final riderClass = Image.asset(
-  'assets/rider.png',
-  width: 40.0,
-  height: 40.0,
-);
-final rulerClass = Image.asset(
-  'assets/ruler.png',
-  width: 40.0,
-  height: 40.0,
-);
-final saberClass = Image.asset(
-  'assets/saber.png',
-  width: 40.0,
-  height: 40.0,
-);
-final shielderClass = Image.asset(
-  'assets/shielder.png',
-  width: 40.0,
-  height: 40.0,
-);
+import 'package:fgo_database/common/assets.dart';
 
 class ModalFilter extends StatefulWidget {
   ModalFilter(this._allServants, this._closeCallback);
@@ -239,7 +178,7 @@ class _ServantListState extends State {
         IconButton(
           onPressed: _filteredServants != null
             ? _showBottomSheet
-            : () => null,
+            : doNothing,
           icon: Icon(Icons.filter_list),
         ),
       ],

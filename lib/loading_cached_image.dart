@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fgo_database/common/assets.dart'
+  show unidentifiedItem;
 
 class LoadingCachedImage extends StatelessWidget {
   final String _url;
-  double _height;
-  double _width;
+  final double _height;
+  final double _width;
 
   LoadingCachedImage(this._url, {
     double height, double width
-  }) : super() {
-    this._width = width;
-    this._height = height;
-  }
+  })
+    : _height = height
+    , _width = width
+  ;
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
+      errorWidget: unidentifiedItem,
       height: _height,
       width: _width,
       placeholder: Center(

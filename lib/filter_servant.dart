@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class FilterServants {
   final List<Map<String, dynamic>> _servants;
   FilterServants(this._servants);

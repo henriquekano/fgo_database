@@ -9,3 +9,5 @@ class Empty extends StatelessWidget {
     );
   }
 }
+
+final doNothing = () => null;

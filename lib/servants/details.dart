@@ -4,73 +4,10 @@ import 'package:vector_math/vector_math_64.dart'
 import 'package:flutter_swiper/flutter_swiper.dart'
     show Swiper, SwiperPagination;
 import 'package:fgo_database/loading_cached_image.dart';
-import 'package:fgo_database/empty.dart';
+import 'package:fgo_database/common/abstractions.dart';
 import 'package:fgo_database/fgo_database_service.dart'
   show fetchActiveSkills, fetchClassSkills;
-
-final quickIcon = Image.asset('assets/quick.png');
-final busterIcon = Image.asset('assets/buster.png');
-final artsIcon = Image.asset('assets/arts.png');
-final assassinClass = Image.asset(
-  'assets/assassin.png',
-  width: 40.0,
-  height: 40.0,
-);
-final archerClass = Image.asset(
-  'assets/archer.png',
-  width: 40.0,
-  height: 40.0,
-);
-final avengerClass = Image.asset(
-  'assets/avenger.png',
-  width: 40.0,
-  height: 40.0,
-);
-final berserkerClass = Image.asset(
-  'assets/berserker.png',
-  width: 40.0,
-  height: 40.0,
-);
-final casterClass = Image.asset(
-  'assets/caster.png',
-  width: 40.0,
-  height: 40.0,
-);
-final foreignerClass = Image.asset(
-  'assets/foreigner.png',
-  width: 40.0,
-  height: 40.0,
-);
-final lancerClass = Image.asset(
-  'assets/lancer.png',
-  width: 40.0,
-  height: 40.0,
-);
-final mooncancerClass = Image.asset(
-  'assets/mooncancer.png',
-  width: 40.0,
-  height: 40.0,
-);
-final riderClass = Image.asset(
-  'assets/rider.png',
-  width: 40.0,
-  height: 40.0,
-);
-final rulerClass = Image.asset(
-  'assets/ruler.png',
-  width: 40.0,
-  height: 40.0,
-);
-final saberClass = Image.asset(
-  'assets/saber.png',
-  width: 40.0,
-  height: 40.0,
-);
-final shielderClass = Image.asset(
-  'assets/shielder.png',
-  width: 40.0,
-  height: 40.0,
-);
+import 'package:fgo_database/common/assets.dart';
 
 class Expand extends StatelessWidget {
   final Widget thigToExpand;
