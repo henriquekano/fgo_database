@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:fgo_database/loading_cached_image.dart';
-import 'details.dart';
 import 'package:fgo_database/fgo_database_service.dart'
-  show fetchItems;
+  show fetchCraftEssences;
+import 'package:fgo_database/common/abstractions.dart';
 
-class ItemList extends StatefulWidget {
+class CraftEssenceList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ItemListState();
+    return _CraftEssencetState();
   }
 }
 
-class _ItemListState extends State {
-  List<Map<String, dynamic>> _filteredItems;
+class _CraftEssencetState extends State {
+  List<Map<String, dynamic>> _filteredCraftEssences;
 
-  @override
-  void initState() {
-    super.initState();
-    fetchItems()
+  _CraftEssencetState() {
+    fetchCraftEssences()
       .then((items) {
         if (this.mounted) {
           setState(() {
-            _filteredItems = items;
+            _filteredCraftEssences = items;
           });
         }
       });
@@ -29,33 +27,28 @@ class _ItemListState extends State {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text('Items'),
+      title: Text('Craft Essences'),
     );
   }
 
   Widget _buildListItem(BuildContext context, Map<String, dynamic> item) {
     final data = item;
-    final itemName = data['name'];
-    final itemIconUrl = data['image'];
+    final craftEssenceName = data['name'];
+    final craftEssenceIconUrl = data['icon'];
 
     return ListTile(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ItemDetails(data),
-        ),
-      ),
+      onTap: () => doNothing,
       title: Row(
         children: [
           LoadingCachedImage(
-            itemIconUrl,
+            craftEssenceIconUrl,
             height: 50.0,
             width: 50.0,
           ),
           Expanded(
             child: Container(
               margin: EdgeInsets.only(left: 10.0),
-              child: Text("$itemName"),
+              child: Text("$craftEssenceName"),
             ),
           ),
         ],
@@ -68,7 +61,7 @@ class _ItemListState extends State {
       return _buildListItem(context, data);
     }).toList();
     return ListView(
-      key: Key('servants_list'),
+      key: Key('craft_essence_list'),
       children: ListTile.divideTiles(
         context: context,
         tiles: listTiles,
@@ -80,9 +73,9 @@ class _ItemListState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: _filteredItems == null
+      body: _filteredCraftEssences == null
         ? Center(child: Text('Loading'))
-        : _buildBody(context, _filteredItems),
+        : _buildBody(context, _filteredCraftEssences),
     );
   }
 }

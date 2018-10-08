@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'servants/list.dart';
 import 'news.dart';
 import 'items/list.dart';
+import 'craft_essences/list.dart';
 
 final tabBar = TabBar(
   isScrollable: false,
@@ -20,6 +21,10 @@ final tabBar = TabBar(
     Tab(
       text: 'Items',
       icon: Icon(Icons.widgets),
+    ),
+    Tab(
+      text: 'CEs',
+      icon: Icon(Icons.style),
     ),
   ],
 );
@@ -46,6 +51,7 @@ class MyApp extends StatelessWidget {
               NewsPage(),
               ServantList(),
               ItemList(),
+              CraftEssenceList(),
             ],
           ),
         ),

@@ -39,3 +39,9 @@ Future<List<Map<String, dynamic>>> fetchItems() {
   return get(url)
     .then(_pickDocs);
 }
+
+Future<List<Map<String, dynamic>>> fetchCraftEssences() {
+  var url = '$ENDPOINT/craft_essence';
+  return get(url)
+    .then(_pickDocs);
+}

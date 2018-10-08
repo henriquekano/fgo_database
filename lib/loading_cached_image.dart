@@ -23,6 +23,8 @@ class LoadingCachedImage extends StatelessWidget {
       width: _width,
       placeholder: Center(
         child: Container(
+          width: _width,
+          height: _height,
           child: CircularProgressIndicator(),
         ),
       ),
