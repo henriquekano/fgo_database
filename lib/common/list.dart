@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fgo_database/common/loading_cached_image.dart';
 import 'package:fgo_database/common/abstractions.dart';
+import 'package:fgo_database/common/assets.dart';
 
 typedef String NameExtractor(Map<String, dynamic> document);
 typedef String IconExtractor(Map<String, dynamic> document);
@@ -96,11 +97,13 @@ class _GenericListState extends State {
         : doNothing,
       title: Row(
         children: [
-          LoadingCachedImage(
-            documentIcon,
-            height: 50.0,
-            width: 50.0,
-          ),
+          documentIcon != null
+            ? LoadingCachedImage(
+                documentIcon,
+                height: 50.0,
+                width: 50.0,
+              )
+            : unidentifiedItem,
           Expanded(
             child: Container(
               margin: EdgeInsets.only(left: 10.0),
@@ -131,7 +134,7 @@ class _GenericListState extends State {
       body: _error
         ? PageError()
         : _filteredDocuments == null
-          ? Center(child: Text('Loading'))
+          ? MainLoading()
           : _buildBody(context, _filteredDocuments),
     );
   }

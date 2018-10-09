@@ -6,6 +6,7 @@ import 'package:html/parser.dart'
 import 'package:html/dom.dart'
   show Document;
 import 'package:fgo_database/common/abstractions.dart';
+import 'common/assets.dart';
 
 final jpEmoji = '🇯🇵';
 final usEmoji = '🇺🇸';
@@ -168,7 +169,7 @@ class _NewsPageParsedState extends State<NewsPageParsed> {
             _requestingMore ? CircularProgressIndicator() : Empty(),
           ],
         )
-      : Center(child: Text('Loading')),
+        : MainLoading(),
     );
   }
 }
