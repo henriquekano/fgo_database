@@ -1,49 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_64.dart'
-  show Vector3;
 import 'package:flutter_swiper/flutter_swiper.dart'
     show Swiper, SwiperPagination;
-import 'package:fgo_database/loading_cached_image.dart';
+import 'package:fgo_database/common/loading_cached_image.dart';
 import 'package:fgo_database/common/abstractions.dart';
 import 'package:fgo_database/fgo_database_service.dart'
   show fetchActiveSkills, fetchClassSkills;
 import 'package:fgo_database/common/assets.dart';
-
-class Expand extends StatelessWidget {
-  final Widget thigToExpand;
-  Expand(this.thigToExpand);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: GestureDetector(
-            child: Transform(
-              transform: Matrix4.diagonal3(Vector3(1.1, 1.1, 1.1)),
-              alignment: FractionalOffset.center,
-              child: thigToExpand,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ZoomTransition extends MaterialPageRoute {
-  ZoomTransition({WidgetBuilder builder}) : super(builder: builder);
-
-  @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
-    return FadeTransition(
-      opacity: animation,
-      child: child,
-    );
-  }
-}
+import 'package:fgo_database/common/expand.dart';
+import 'package:fgo_database/common/transition.dart';
 
 class ServantDetails extends StatefulWidget {
   final Map<String, dynamic> _details;
@@ -128,7 +92,7 @@ class _ServantDetailsState extends State<ServantDetails> {
             Navigator.push(
               context,
               ZoomTransition(
-                builder: (context) => Expand(image),
+                builder: (context) => Expand(imagesUrls[index]),
               ),
             );
           },

@@ -85,8 +85,14 @@ class _NewsPageParsedState extends State<NewsPageParsed> {
                 _news.addAll(newNews);
               });
             }
-          }
-        );
+          })
+          .catchError((err) {
+            Scaffold.of(this.context).showSnackBar(
+              SnackBar(
+                content: Text('Couldn\'t get more :('),
+              ),
+            );
+          });
       });
     }
   }

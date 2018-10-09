@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'package:fgo_database/loading_cached_image.dart';
+import 'package:fgo_database/common/loading_cached_image.dart';
 import 'package:fgo_database/common/abstractions.dart';
 
 class ItemDetails extends StatefulWidget {

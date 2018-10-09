@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:fgo_database/loading_cached_image.dart';
+import 'package:fgo_database/common/loading_cached_image.dart';
 import 'package:fgo_database/common/abstractions.dart';
 
 typedef String NameExtractor(Map<String, dynamic> document);
@@ -46,21 +46,36 @@ class _GenericListState extends State {
   final IconExtractor _iconExtractor;
   final String _pageTitle;
   final OnTap _onTap;
+  Future<List<Map<String, dynamic>>> _fetchDocuments;
+  bool _error = false;
 
   _GenericListState(
     this._pageTitle,
-    Future<List<Map<String, dynamic>>> _fetchDocuments,
+    this._fetchDocuments,
     this._nameExtractor,
     this._iconExtractor,
     this._onTap,
-  ) {
-    _fetchDocuments
-    .then((documents) {
-      if (this.mounted) {
-        setState(() {
-          _filteredDocuments = documents;
+  );
+
+  @override
+  initState() {
+    super.initState();
+    setState(() {
+      _error = false;
+
+      _fetchDocuments
+        .then((documents) {
+          if (this.mounted) {
+            setState(() {
+              _filteredDocuments = documents;
+            });
+          }
+        })
+        .catchError((err) {
+          setState(() {
+            _error = true;
+          });
         });
-      }
     });
   }
 
@@ -113,9 +128,11 @@ class _GenericListState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: _filteredDocuments == null
-        ? Center(child: Text('Loading'))
-        : _buildBody(context, _filteredDocuments),
+      body: _error
+        ? PageError()
+        : _filteredDocuments == null
+          ? Center(child: Text('Loading'))
+          : _buildBody(context, _filteredDocuments),
     );
   }
 }

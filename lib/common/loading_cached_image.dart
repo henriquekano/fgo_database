@@ -21,13 +21,18 @@ class LoadingCachedImage extends StatelessWidget {
       errorWidget: unidentifiedItem,
       height: _height,
       width: _width,
-      placeholder: Center(
-        child: Container(
+      placeholder:
+        Container(
           width: _width,
           height: _height,
-          child: CircularProgressIndicator(),
+          child:  Center(
+            child: Container(
+              height: 40.0,
+              width: 40.0,
+              child: CircularProgressIndicator(),
+            ),
+          ),
         ),
-      ),
       imageUrl: _url,
     );
   }

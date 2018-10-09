@@ -65,6 +65,8 @@ final quickIcon = Image.asset('assets/quick.png');
 final busterIcon = Image.asset('assets/buster.png');
 final artsIcon = Image.asset('assets/arts.png');
 
+final errorImage = Image.asset('assets/error.jpg');
+
 final unidentifiedItem = Container(
   width: 40.0,
   height: 40.0,
