@@ -456,9 +456,8 @@ class _ServantDetailsState extends State<ServantDetails> {
 
     final children = [rowBuilder('default')];
     children.addAll(bondKeys.map(rowBuilder));
-    biography['extra'] != null
-      ? children.add(rowBuilder('extra'))
-      : null;
+    if (biography['extra'] != null)
+      children.add(rowBuilder('extra'));
     return ListView(
       padding: EdgeInsets.only(
         right: 30.0,

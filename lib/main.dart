@@ -3,6 +3,7 @@ import 'servants/list.dart';
 import 'news.dart';
 import 'items/list.dart';
 import 'craft_essences/list.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 final tabBar = TabBar(
   isScrollable: false,
@@ -36,23 +37,32 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      theme: new ThemeData(
-        primarySwatch: Colors.indigo,
+    final client = ValueNotifier(
+      Client(
+        endPoint: 'http://fgo-database-api.herokuapp.com/graphql',
+        cache: InMemoryCache(),
       ),
-      home: DefaultTabController(
-        length: tabBar.tabs.length,
-        child: Scaffold(
-          backgroundColor: Colors.indigo,
-          bottomNavigationBar: tabBar,
-          body: TabBarView(
-            physics: NeverScrollableScrollPhysics(),
-            children: [
-              NewsPage(),
-              ServantList(),
-              ItemList(),
-              CraftEssenceList(),
-            ],
+    );
+    return GraphqlProvider(
+      client: client,
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.indigo,
+        ),
+        home: DefaultTabController(
+          length: tabBar.tabs.length,
+          child: Scaffold(
+            backgroundColor: Colors.indigo,
+            bottomNavigationBar: tabBar,
+            body: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                NewsPage(),
+                ServantList(),
+                ItemList(),
+                CraftEssenceList(),
+              ],
+            ),
           ),
         ),
       ),

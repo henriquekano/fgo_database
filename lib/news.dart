@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:dio/dio.dart';
@@ -37,7 +38,7 @@ class _NewsPageParsedState extends State<NewsPageParsed> {
 
   String __prependZeroToMonth(String number) {
     if (number.length == 1) {
-      return '0${number}';
+      return '0$number';
     }
     return number;
   }
@@ -98,6 +99,14 @@ class _NewsPageParsedState extends State<NewsPageParsed> {
     }
   }
 
+  Future<void> _resetNews() async {
+    setState(() {
+      _nextPageUrl = _url;
+      _news.removeWhere((doc) => true);
+    });
+
+    return _fetchMoreNews();
+  }
   @override
   void initState() {
     super.initState();
@@ -160,16 +169,19 @@ class _NewsPageParsedState extends State<NewsPageParsed> {
 
     return DefaultTabController(
       length: 2,
-      child: _news.length != 0
-        ? Column(
-          children: [
-            Expanded(
-              child: list,
-            ),
-            _requestingMore ? CircularProgressIndicator() : Empty(),
-          ],
-        )
-        : MainLoading(),
+      child: RefreshIndicator(
+        onRefresh: () => _resetNews(),
+        child: _news.length != 0
+          ? Column(
+            children: [
+              Expanded(
+                child: list,
+              ),
+              _requestingMore ? CircularProgressIndicator() : Empty(),
+            ],
+          )
+          : MainLoading(),
+      ),
     );
   }
 }

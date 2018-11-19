@@ -82,56 +82,20 @@ final unidentifiedItem = Container(
   ),
 );
 
-class _MainLoadingState extends State<MainLoading> {
-  int _index = 0;
-  final _frames = [
-    Image.asset('assets/1_transparent.png'),
-    Image.asset('assets/2_transparent.png'),
-    Image.asset('assets/3_transparent.png'),
-    Image.asset('assets/4_transparent.png'),
-    Image.asset('assets/5_transparent.png'),
-    Image.asset('assets/6_transparent.png'),
-    Image.asset('assets/7_transparent.png'),
-    Image.asset('assets/8_transparent.png'),
-  ];
-
-  Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    this._timer = Timer.periodic(
-      Duration(milliseconds: 600),
-      (timer) {
-        setState(() {
-          _index = (_index + 1) % 8;
-        });
-      }
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _timer.cancel();
-  }
-
+class MainLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 100.0,
-        height: 50.0,
-        child: _frames[_index],
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Center(
+        child: Container(
+          width: 100.0,
+          height: 50.0,
+          child: Image.asset('assets/fou_loading_reversed.gif'),
+        ),
       ),
     );
-  }
-
-}
-
-class MainLoading extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _MainLoadingState();
   }
 }

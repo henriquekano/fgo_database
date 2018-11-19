@@ -469,7 +469,7 @@ Future<Map> _wikiaDownloadAndParseServantStatus(String link) async {
   final icons = parser.parseIcons();
   final biography = parser.parseBiography();
 
-  print('Saving ${status["id"]} - ${name}');
+  print('Saving ${status["id"]} - $name');
   return Map<String, dynamic>.from({
     'sprites': sprites,
     'name': name,

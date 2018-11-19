@@ -1,7 +1,6 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 import 'servants_list.dart';
-import 'dart:async';
 
 void main() {
   group('When viewing the details of a servant', () {

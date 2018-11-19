@@ -1,7 +1,6 @@
 import 'package:fgo_database/fgo_webscrape.dart';
 import 'package:test/test.dart';
 import 'dart:io';
-import 'package:path/path.dart' show dirname, join;
 
 void main() {
   group('When parsing a grandorder.gamepress.gg servant info,', () {

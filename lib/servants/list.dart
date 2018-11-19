@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fgo_database/filter_servant.dart';
 import 'details.dart';
-import 'package:fgo_database/common/abstractions.dart';
-import 'package:fgo_database/common/loading_cached_image.dart';
-import 'package:fgo_database/fgo_database_service.dart'
-  show fetchServants;
-import 'modal_filter.dart';
 import 'package:fgo_database/common/list.dart';
+import 'package:fgo_database/common/assets.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class ServantList extends StatefulWidget {
   @override
@@ -16,12 +12,6 @@ class ServantList extends StatefulWidget {
 }
 
 class _ServantListState extends State {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  PersistentBottomSheetController _modalController;
-  List<Map<String, dynamic>> _servantDocuments;
-  List<Map<String, dynamic>> _filteredServants;
-  FilterServants _filterServants;
-
   // @override
   // void initState() {
   //   super.initState();
@@ -116,20 +106,16 @@ class _ServantListState extends State {
   //   );
   // }
 
-  @override
-  Widget build(BuildContext context) {
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Text('Servants'),
+    );
+  }
+
+  Widget _buildBodyWithData(BuildContext context, data) {
     return GenericList(
       title: 'Servants',
-      fetchDocuments: fetchServants()
-        .then((documents) {
-          documents.sort((a, b) {
-            final firstId = int.tryParse(a['status']['id']);
-            final secondId = int.tryParse(b['status']['id']);
-            return firstId.compareTo(secondId);
-          });
-
-          return documents;
-        }),
+      filteredDocuments: data,
       iconExtractor: (doc) {
         final iconUrls = doc['icons'];
         final hasIcon = iconUrls != null && iconUrls.length > 0;
@@ -142,6 +128,38 @@ class _ServantListState extends State {
           MaterialPageRoute(
             builder: (context) => ServantDetails(doc),
           ),
+        );
+      },
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    final servantsQuery = """
+      query {
+        servants {
+          name
+          icons
+          _id
+        }
+      }
+    """;
+    return Query(
+      servantsQuery,
+      builder: ({bool loading, Map<String, dynamic> data, Exception error}) {
+        Widget body = _buildBodyWithData(context, data['servants']);
+        if (loading) {
+          body = MainLoading();
+        }
+
+        if (error != null) {
+          body = Center(
+            child: errorImage,
+          );
+        }
+
+        return Scaffold(
+          appBar: _buildAppBar(context),
+          body: body,
         );
       },
     );
